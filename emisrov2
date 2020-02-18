@@ -1,0 +1,36 @@
+#include <Manchester.h> // https://github.com/mchr3k/arduino-libs-manchester
+
+/*
+
+  Manchester Transmitter example
+
+  In this example transmitter will send 10 bytes array  per transmittion
+
+  try different speeds using this constants, your maximum possible speed will
+  depend on various factors like transmitter type, distance, microcontroller speed, ...
+
+  MAN_300 0
+  MAN_600 1
+  MAN_1200 2
+  MAN_2400 3
+  MAN_4800 4
+  MAN_9600 5
+  MAN_19200 6
+  MAN_38400 7
+
+*/
+
+#define TX_PIN  2  //pin 2 conectado a transmisor
+#define LED_PIN 13 //alias para pin 13
+
+uint8_t dataa[5] = {5, '1', '2', '3', 'a'};  // cadena de datos el primer dato no se toma en cuenta '123' como código y 'a' para encender el led
+uint8_t datalength = 5; // se transmitirán 5 datos
+void setup()
+{
+  man.setupTransmit(TX_PIN, MAN_600); //pin 2 para transmisor y velocidad de transmisión rf a 600 baudios
+  man.transmitArray(5, dataa);  //enviamos la cadena con 'a' para encender
+}
+
+void loop()
+{
+}
